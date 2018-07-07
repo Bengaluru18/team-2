@@ -59,7 +59,7 @@ con.query("SELECT * FROM booking where fid=" +req.params.fid, function (err, res
 }); 
 
 app.post('/inserting_booking/:pid/:pname/:qty/:bdate/:rdate/:fid',function(req,res){
-con.query("insert into booking (pid,pname,quantity,borrowdate,returndate,fid)values("+req.body.pid+","+req.body.pname+","+req.body.qty+","+req.body.rdate+","+req.body.fid+")",function (err, result, fields) { 
+con.query("insert into booking (pid,pname,quantity,borrowdate,returndate,fid)values("+req.body.pid+","+req.body.pname+","+req.body.qty+","+req.body.bdate+","+req.body.rdate+","+req.body.fid+")",function (err, result, fields) { 
 if (err) throw err;
     console.log(result);
   res.send(result);
