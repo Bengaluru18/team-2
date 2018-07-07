@@ -1,0 +1,33 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form>
+  <ion-list >
+    <ion-item id="login-input1" class="myclass1">
+      <ion-label></ion-label>
+      <ion-input type="email" placeholder="id" [(ngModel)]="credentials.email" required name='email'></ion-input>
+    </ion-item>
+    <ion-item id="login-input2">
+      <ion-label></ion-label>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="credentials.password" required name='password'></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="spacer" style="height:40px;" id="login-spacer1"></div>
+    <button padding class="header" ion-button color="#4a78c4" block style="font-weight:600;color:#FFFFFF;border-radius:4px 4px 4px 4px;" on-click="login()">
+      Log in
+    </button>
+  </form>
+  <div class="spacer" style="width:300px;height:30px;" id="login-spacer2"></div>
+
+
+
+
+</ion-content>
