@@ -50,7 +50,7 @@ con.query("SELECT * FROM Farmer where fid=" +req.params.fid, function (err, resu
 }); 
  
 app.get('/booking/:fid', function (req, res) {  
-con.query("SELECT * FROM booking where bid=" +req.params.fid, function (err, result, fields) {
+con.query("SELECT * FROM booking where fid=" +req.params.fid, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
   res.send(result);
