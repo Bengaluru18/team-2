@@ -7,8 +7,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-//host: "13.229.237.24",
-host: "localhost",
+host: "13.229.237.24",
+//host: "localhost",
   user: "root",
   password: "root1234",
 database: "ISAP"
@@ -49,6 +49,14 @@ con.query("SELECT * FROM Farmer where fid=" +req.params.fid, function (err, resu
 
 }); 
  
+app.get('/booking/:fid', function (req, res) {  
+con.query("SELECT * FROM booking where bid=" +req.params.fid, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  res.send(result);
+  });
+
+}); 
 
 var server = app.listen(5001, function () {  
   var host = server.address().address  
