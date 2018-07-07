@@ -7,8 +7,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-//  host: "13.229.237.24",
-host: "localhost",
+ host: "13.229.237.24",
+//host: "localhost",
   user: "root",
   password: "root1234",
 database: "ISAP"
@@ -39,6 +39,54 @@ con.query("SELECT * FROM product where cid =" + req.params.cid, function (err, r
 
 }); 
 
+
+app.get('/product', function (req, res) {  
+con.query("SELECT * FROM product", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+	res.send(result);
+  });
+
+}); 
+
+
+app.get('/admin', function (req, res) {  
+con.query("SELECT * FROM admin", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+	res.send(result);
+  });
+
+}); 
+
+
+app.get('/booking', function (req, res) {  
+con.query("SELECT * FROM booking", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+	res.send(result);
+  });
+
+}); 
+
+app.get('/center', function (req, res) {  
+con.query("SELECT * FROM center", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+	res.send(result);
+  });
+
+}); 
+
+
+app.get('/farmer/:fid', function (req, res) {  
+con.query("SELECT * FROM Farmer where fid=" +req.params.fid, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+	res.send(result);
+  });
+
+}); 
 
 app.get('/app/getequip', function (req, res) {  
 var cid = 11; //req.query.cid;	
