@@ -8,14 +8,18 @@
 </ion-header>
 
 <ion-content>
-  
-  <ion-list>
-    <ion-card *ngFor="let prod of products" (click)="productTapped($event, product)">
-    <button ion-item >
 
-      {{prod.p_name}}
+  <div class="bar">
+      <ion-searchbar  (ionInput)="getItems($event)" ></ion-searchbar>
+    </div>
+
+  <ion-list>
+    <ion-card *ngFor="let prod of items" >
+    <button ion-item (click)="productTapped(prod)">
+
+      {{prod.pname}}
       <div class="item-note" item-end>
-        {{prod.avail}}
+        {{prod.available}}
       </div>
       <div class="item-note" item-end>
         {{prod.price}}
