@@ -58,6 +58,17 @@ con.query("SELECT * FROM booking where fid=" +req.params.fid, function (err, res
 
 }); 
 
+app.post('/inserting_booking/:pid/:pname/:qty/:bdate/:rdate/:fid',function(req,res){
+con.query("insert into booking (pid,pname,quantity,borrowdate,returndate,fid)values("+req.body.pid+","+req.body.pname+","+req.body.qty+","+req.body.rdate+","+req.body.fid+")")
+if (err) throw err;
+    console.log(result);
+  res.send(result);
+  });
+
+})
+
+
+
 var server = app.listen(5001, function () {  
   var host = server.address().address  
     var port = server.address().port  
