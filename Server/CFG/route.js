@@ -7,8 +7,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
- host: "13.229.237.24",
-//host: "localhost",
+// host: "13.229.237.24",
+host: "localhost",
   user: "root",
   password: "root1234",
 database: "ISAP"
@@ -23,9 +23,22 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.get('/index.html', function (req, res) {  
-console.log("hello");
+console.log("First Page");
    res.sendFile( __dirname + "/" + "index.html" );    
 })  
+
+
+//LOGIN STUFF 
+
+
+
+
+
+
+app.get('/dashboard.html', function (req, res) {  
+console.log("hello");
+   res.sendFile( __dirname + "/" + "dashboard.html" );    
+}) 
 
 
 app.get('/getequip/:cid', function (req, res) {  
@@ -100,16 +113,6 @@ con.query("SELECT * FROM center", function (err, result, fields) {
 }); 
 
 
-app.get('/dashboard.html', function (req, res) {  
-console.log("hello");
-   res.sendFile( __dirname + "/" + "dashboard.html" );    
-}) 
-
-var server = app.listen(5000, function () {  
-	var host = server.address().address  
-  	var port = server.address().port  
-	console.log("Example app listening at %s %s", host, port)  
-}) 
 
 
 });
