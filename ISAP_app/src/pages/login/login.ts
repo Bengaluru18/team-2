@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController } from 'ionic-angular';
 import { ListPage } from '../list/list';
+import { LoginProvider } from '../../providers/login/login';
 /**
  * Generated class for the LoginPage page.
  *
@@ -15,7 +16,8 @@ import { ListPage } from '../list/list';
 })
 export class LoginPage {
 credentials = { email: '', password: '' };
-  constructor(public navCtrl: NavController, public navParams: NavParams,public Alert: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public Alert: AlertController
+  ,public getSalesman: LoginProvider) {
   }
 
   ionViewDidLoad() {
@@ -24,30 +26,46 @@ credentials = { email: '', password: '' };
 
   public login() {
 
-        if(this.credentials.email === "admin" && this.credentials.password === "admin") {
-          this.goToList(this.credentials.email);
+          this.getSalesman.getsalesman(this.id)
+          .subscribe(data => {
+            console.log(data.length)
+
+            if(data.length>0){
+              console.log("inside")
+              console.log(data[0])
+                this.goToList(data[0]);
+            }
+            else {
+              console.log("outside")
+              let alert = this.Alert.create({
+                    title: 'Invalid credentials',
+                    message: 'Please register with ISAP ',
+                    buttons: [{
+                      text: 'Ok',
+                      handler: () => {
+                        console.log('Ok Clicked');
+                      }
+                    }],
+
+                  });
+                  alert.present();
+            }
+          })
+
+        //
+/*
         }
         else{
-          let alert = this.Alert.create({
-                title: 'Invalid credentials',
-                message: 'Please register with ISAP ',
-                buttons: [{
-                  text: 'Ok',
-                  handler: () => {
-                    console.log('Ok Clicked');
-                  }
-                }],
 
-              });
-              alert.present();
+
         }
 
-    
+*/
 
   }
 
-  goToList(email){
-    this.navCtrl.push(ListPage);
+  goToList(param){
+    this.navCtrl.push(ListPage,param);
   }
 
 }

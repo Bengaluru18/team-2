@@ -16,11 +16,11 @@ export class GetitemProvider {
   }
 
   getItems(cid){
-    
+
 
     console.log(cid);
-    console.log("http://13.229.237.24:5000/getequip/"+cid);
-    return this.http.get("http://13.229.237.24:5000/getequip/"+cid)
+    console.log("http://13.229.237.24:5001/getequip/"+cid);
+    return this.http.get("http://13.229.237.24:5001/getequip/"+cid)
     //.do(res => console.log(res))
     .map(res => res);
   }

@@ -14,38 +14,25 @@ export class ListPage {
 
   products =[];
   items:any;
-
+  user: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public produtsGet: GetitemProvider ) {
 
 
 
+    this.user=this.navParams.data;
 
-
-    this.products =[];
-    this.produtsGet.getItems(11)
+    //this.products =[];
+    this.produtsGet.getItems(this.user['cid'])
     .subscribe(data => {
       console.log(data[0])
       this.products=data
           this.items = this.products ;
           console.log(this.items)
-      //console.log(data.json())
-      //console.log(data.json()[0])
-      //this.products=data.json()[0];
+
     })
     console.log(this.product)
-/*
-    for (let i = 1; i < 11; i++) {
-      this.products.push({
-        p_name:"Item name is "+i,
-        pid:i+i*2,
-        Total_no:"3",
-        avail:"1 available",
-        cid: i+i*3,
-        price: "100rs"
-      });
-    }
-*/
+
 
 
   }
