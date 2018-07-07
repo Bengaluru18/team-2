@@ -7,8 +7,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-// host: "13.229.237.24",
-host: "localhost",
+host: "13.229.237.24",
+//host: "localhost",
   user: "root",
   password: "root1234",
 database: "ISAP"
@@ -22,7 +22,7 @@ con.connect(function(err) {
 app.use(express.static('public')); 
 app.use(bodyParser.json());
 
-app.get('/index.html', function (req, res) {  
+app.get('/', function (req, res) {  
 console.log("First Page");
    res.sendFile( __dirname + "/" + "index.html" );    
 })  
@@ -35,10 +35,12 @@ console.log("First Page");
 
 
 
-app.get('/dashboard.html', function (req, res) {  
+app.get('/dashboard', function (req, res) {  
 console.log("hello");
    res.sendFile( __dirname + "/" + "dashboard.html" );    
 }) 
+
+
 
 
 app.get('/getequip/:cid', function (req, res) {  
@@ -52,7 +54,21 @@ con.query("SELECT * FROM product where cid =" + req.params.cid, function (err, r
 
 }); 
 
+app.get('/app/getequip', function (req, res) {  
+var cid = 11; //req.query.cid;	
 
+con.query("SELECT * FROM center", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+	res.send(result);
+  });
+
+}); 
+
+
+
+
+//display all
 app.get('/product', function (req, res) {  
 con.query("SELECT * FROM product", function (err, result, fields) {
     if (err) throw err;
@@ -101,21 +117,9 @@ con.query("SELECT * FROM Farmer where fid=" +req.params.fid, function (err, resu
 
 }); 
 
-app.get('/app/getequip', function (req, res) {  
-var cid = 11; //req.query.cid;	
-
-con.query("SELECT * FROM center", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-	res.send(result);
-  });
-
-}); 
-
-
 
 
 });
 
 
-
+app.listen(5000, () => console.log('Example app listening on port 5000!'))
