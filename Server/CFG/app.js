@@ -29,12 +29,12 @@ console.log("hello");
 
 
 app.get('/getequip/:cid', function (req, res) {  
-//var cid = 11; //req.query.cid;	
+//var cid = 11; //req.query.cid;  
 console.log("jsn");
 con.query("SELECT * FROM product where cid =" + req.params.cid, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-	res.send(result);
+  res.send(result);
   });
 
 }); 
@@ -51,9 +51,9 @@ con.query("SELECT * FROM Farmer where fid=" +req.params.fid, function (err, resu
  
 
 var server = app.listen(5001 function () {  
-	var host = server.address().address  
-  	var port = server.address().port  
-	console.log("Example app listening at %s %s", host, port)  
+  var host = server.address().address  
+    var port = server.address().port  
+  console.log("Example app listening at %s %s", host, port)  
 }) 
 
 
