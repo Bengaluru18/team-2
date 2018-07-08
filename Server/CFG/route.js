@@ -14,11 +14,9 @@ const client = require('twilio')(accountSid, authToken);
 */
 
 
-
- 
 var con = mysql.createConnection({
-//host: "13.229.237.24",
-host: "localhost",
+host: "13.229.237.24",
+//host: "localhost",
   user: "root",
   password: "root1234",
 database: "ISAP"
@@ -59,15 +57,19 @@ client.messages
 //var query = "SELECT date_add(CURDATE(), INTERVAL 3 DAY)"
 
 
-con.query("SELECT f.fname, b.returndate FROM Farmer f, booking b where b.returndate= date_add(CURDATE(),INTERVAL 3 DAY)", function (err, result, fields) {
+con.query("SELECT f.fname, b.returndate FROM Farmer f, booking b where b.returndate= date_add(CURDATE(),INTERVAL 2 DAY)", function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-	//res.send(result);
+	res.send(result);
 
 //var obj= JSON.parse(result);
 //console.log(obj.fname);
 //console.log(obj.date);
+for( var i=0 ; i< result.length ; i++)
+{
 
+if( result != null )
+{
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -80,7 +82,7 @@ var mailOptions = {
   from: 'cfgtest2018@gmail.com',
   to: 'cfgtest2018@gmail.com',
   subject: 'Sending Email using Node.js....',
-  text: 'Hi' +result.fname +'The product return date is' +result.date
+  text: 'Hi ' +result[i].fname +'The product return date is ' +result[i].returndate
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -91,10 +93,10 @@ transporter.sendMail(mailOptions, function(error, info){
   }
 }); 
 
+}
 
+}
   });
-
-
 
 })  
 
