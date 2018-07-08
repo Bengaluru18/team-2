@@ -15,6 +15,7 @@ import { LoginProvider } from '../../providers/login/login';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  data:any;
 credentials = { email: '', password: '' };
   constructor(public navCtrl: NavController, public navParams: NavParams,public Alert: AlertController
   ,public getSalesman: LoginProvider) {
@@ -25,6 +26,7 @@ credentials = { email: '', password: '' };
   }
 
   public login() {
+
 
           this.getSalesman.getsalesman(this.id)
           .subscribe(data => {

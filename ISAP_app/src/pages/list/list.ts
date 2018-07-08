@@ -14,12 +14,10 @@ export class ListPage {
 
   products =[];
   items:any;
-  user: any;
+  user: [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public produtsGet: GetitemProvider ) {
-
-
-
     this.user=this.navParams.data;
 
     //this.products =[];
@@ -29,13 +27,20 @@ export class ListPage {
       this.products=data
           this.items = this.products ;
           console.log(this.items)
+        setTimeout(() => {
+          this.produtsGet.getItems(this.user['cid'])
+          .subscribe(data => {
+            console.log(data[0])
+            this.products=data
+                this.items = this.products ;
+                console.log(this.items)
 
+    }, 50000);
     })
     console.log(this.product)
 
-
-
-  }
+  })
+}
 
   /*Added for search bar*/
   getItems(ev) {
@@ -50,11 +55,13 @@ export class ListPage {
       })
     }
   }
-  productTapped(item) {
+  
+  productTapped(item1) {
     // That's right, we're pushing to ourselves!
-    console.log(item)
+    console.log(item1)
     this.navCtrl.push(BookingPage, {
-      item: item
+      user: this.user,
+      item: item1
     });
   }
 }

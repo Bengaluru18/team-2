@@ -13,6 +13,8 @@ import { LoginPage } from '../pages/login/login'
 import { BookingPage } from '../pages/booking/booking'
 import { GetitemProvider } from '../providers/getitem/getitem';
 import { LoginProvider } from '../providers/login/login';
+import { CurrentItemProvider } from '../providers/current-item/current-item';
+import { BookingProvider } from '../providers/booking/booking';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { LoginProvider } from '../providers/login/login';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GetitemProvider,
-    LoginProvider
+    LoginProvider,
+    CurrentItemProvider,
+    BookingProvider
   ]
 })
 export class AppModule {}

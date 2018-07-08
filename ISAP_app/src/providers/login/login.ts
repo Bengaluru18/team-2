@@ -23,6 +23,6 @@ export class LoginProvider {
     //.do(res => console.log(res))
     .map(res => res);
   }
-  }
+  
 
 }
