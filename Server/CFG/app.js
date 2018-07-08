@@ -76,7 +76,7 @@ con.query("insert into booking (pid,pname,quantity,borrowdate,returndate,fid)val
     console.log("UPDATE product SET available=" +total+ "  WHERE pid="+req.params.pid)
     con.query("UPDATE product SET available=" +total+ "  WHERE pid="+req.params.pid,function (err, result, fields){
     //  console.log(result)
-    res.end(result)
+    res.end(1);
   });
 
 
