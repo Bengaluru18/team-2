@@ -13,7 +13,7 @@
 
 			$pw = md5($pw);
 
-			$query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
+			$query = mysqli_query($this->con, "SELECT * FROM admin WHERE username='$un' AND password='$pw'");
 
 			if(mysqli_num_rows($query) == 1) {
 				return true;
@@ -25,7 +25,7 @@
 
 		}
 
-		public function register($un, $fn, $ln, $em, $em2, $pw, $pw2) {
+		public function register($un, $fn, $ln, $em, $em2, $pw, $pw2, $cn) {
 			$this->validateUsername($un);
 			$this->validateFirstName($fn);
 			$this->validateLastName($ln);
@@ -34,7 +34,7 @@
 
 			if(empty($this->errorArray) == true) {
 				//Insert into db
-				return $this->insertUserDetails($un, $fn, $ln, $em, $pw);
+				return $this->insertUserDetails($un, $fn, $ln, $em, $pw,$cn);
 			}
 			else {
 				return false;
@@ -49,12 +49,12 @@
 			return "<span class='errorMessage'>$error</span>";
 		}
 
-		private function insertUserDetails($un, $fn, $ln, $em, $pw) {
+		private function insertUserDetails($un, $fn, $ln, $em, $pw,$cn) {
 			$encryptedPw = md5($pw);
 			$profilePic = "assets/images/profile-pics/head_emerald.png";
 			$date = date("Y-m-d");
 
-			$result = mysqli_query($this->con, "INSERT INTO users VALUES ('', '$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic')");
+			$result = mysqli_query($this->con, "INSERT INTO admin VALUES ('', '$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic','$cn')");
 
 			return $result;
 		}
@@ -66,7 +66,7 @@
 				return;
 			}
 
-			$checkUsernameQuery = mysqli_query($this->con, "SELECT username FROM users WHERE username='$un'");
+			$checkUsernameQuery = mysqli_query($this->con, "SELECT username FROM admin WHERE username='$un'");
 			if(mysqli_num_rows($checkUsernameQuery) != 0) {
 				array_push($this->errorArray, Constants::$usernameTaken);
 				return;
@@ -99,7 +99,7 @@
 				return;
 			}
 
-			$checkEmailQuery = mysqli_query($this->con, "SELECT email FROM users WHERE email='$em'");
+			$checkEmailQuery = mysqli_query($this->con, "SELECT email FROM admin WHERE email='$em'");
 			if(mysqli_num_rows($checkEmailQuery) != 0) {
 				array_push($this->errorArray, Constants::$emailTaken);
 				return;

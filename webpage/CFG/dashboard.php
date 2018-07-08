@@ -1,17 +1,6 @@
-<?php
-include("includes/config.php");
-
-//session_destroy(); LOGOUT
-
-if(isset($_SESSION['userLoggedIn'])) {
-	$userLoggedIn = $_SESSION['userLoggedIn'];
-}
-else {
-	header("Location: register.php");
-}
-
-?>
-
+<?php 
+$res = 1;
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -58,7 +47,7 @@ else {
 						      <div class="card-body">
 						        <h5 class="card-title">Manage Orders</h5>
 						        <p class="card-text">Here You can manage orders</p>
-						        <a href="total_display.php" class="btn btn-primary">New Orders</a>
+						        <a href="total_display.php?id=<?php echo $res;?>" class="btn btn-primary">New Orders</a>
 						        <a href="particular_display.php" class="btn btn-primary">Manage Orders</a>
 						      </div>
 						</div>

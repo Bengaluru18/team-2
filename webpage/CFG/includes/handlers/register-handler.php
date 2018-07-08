@@ -28,8 +28,9 @@ if(isset($_POST['registerButton'])) {
 	$email2 = sanitizeFormString($_POST['email2']);
 	$password = sanitizeFormPassword($_POST['password']);
 	$password2 = sanitizeFormPassword($_POST['password2']);
+	$centername = $_POST['centername'];
 
-	$wasSuccessful = $account->register($username, $firstName, $lastName, $email, $email2, $password, $password2);
+	$wasSuccessful = $account->register($username, $firstName, $lastName, $email, $email2, $password, $password2, $centername);
 
 	if($wasSuccessful == true) {
 		$_SESSION['userLoggedIn'] = $username;

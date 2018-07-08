@@ -121,6 +121,15 @@
 						<input id="password2" name="password2" type="password" placeholder="Your password" required>
 					</p>
 
+					<p>
+						<label for="centerName">Center Name</label>
+						<select id="centerName" name="centername" style="color:black;">
+							<option value="1" style="color:black;">Bengaluru</option>
+							<option value="2" style="color:black;">Mysuru</option>
+							<option value="3" style="color:black;">Shivamogga</option>
+						</select>
+					</p>
+
 					<button type="submit" name="registerButton">SIGN UP</button>
 
 					<div class="hasAccountText">
