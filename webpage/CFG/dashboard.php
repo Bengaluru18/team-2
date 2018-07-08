@@ -1,5 +1,6 @@
 <?php 
-$res = 1;
+session_start();
+//echo $_SESSION['cid'];
  ?>
 
 <!DOCTYPE html>
@@ -47,8 +48,8 @@ $res = 1;
 						      <div class="card-body">
 						        <h5 class="card-title">Manage Orders</h5>
 						        <p class="card-text">Here You can manage orders</p>
-						        <a href="total_display.php?id=<?php echo $res;?>" class="btn btn-primary">New Orders</a>
-						        <a href="particular_display.php" class="btn btn-primary">Manage Orders</a>
+						        <a href="total_display.php?id=<?php echo $_SESSION['cid'];?>" class="btn btn-primary">New Orders</a>
+						        <!-- <a href="particular_display.php" class="btn btn-primary">Manage Orders</a> -->
 						      </div>
 						</div>
 					</div>

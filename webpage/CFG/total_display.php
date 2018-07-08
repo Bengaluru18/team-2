@@ -1,4 +1,8 @@
+<?php 
+session_start();
+//echo $_SESSION['cid'];
 
+?>
 <!DOCTYPE html>
  <html>
  <head>
@@ -34,7 +38,8 @@
 
  				<?php
 				    include("includes/config.php");
-				    $q = "select * from product ";
+				    $cid = $_SESSION['cid'];
+				    $q = "select * from product WHERE cid = $cid ";
 				    $query = mysqli_query($con,$q);
 
 				    while($res = mysqli_fetch_array($query)){
@@ -78,33 +83,41 @@
 
 	 				<?php
 
-	 					$id = 2;
+	 					//$id = 6;
+	 				//echo 'test';
 	 					if(isset($_POST['submit'])){
-
+	 						//echo 'test';
 	 						$eqName = $_POST['equipmentName'];
 	 						$eqQuan = $_POST['quantityReq'];
 	 						$eqPrice = $_POST['price'];
 
-	 						echo $eqPrice;
+	 						//echo 'test';
 
+	 						//echo $eqPrice."\n";
+	 						//echo $eqQuan."\n";
+	 						$cid = $_SESSION['cid'];
+	 						//echo $cid."\n";
 	 						include("includes/config.php");
 
-	 						$q = "SELECT * FROM product WHERE pname = '$eqName' ";
+	 						$q = "SELECT * FROM product WHERE pname = '$eqName' AND cid=$cid ";
+	 						echo $q."\n";
 	 						$query = mysqli_query($con,$q);
-
+	 						echo mysqli_num_rows($query);
 	 						if(mysqli_num_rows($query) == 1 ){
-	 							echo "already present";
-	 							$updateQuery = "UPDATE product SET total = (total + '$eqQuan') WHERE pname = '$eqName' AND cid=1 ";
+	 							//echo "already present";
+	 							$cid = $_SESSION['cid'];
+	 							$updateQuery = "UPDATE product SET total = (total + $eqQuan) WHERE pname = '$eqName' AND cid= $cid ";
 	 							$uQuery = mysqli_query($con,$updateQuery) or die("query failed");
-	 							header("Location:total_display.php");
+	 							//header("Location:total_display.php");
 	 						}
 	 						else{
-	 							$id = $id+1;
-	 							echo "insertion to be done";
-	 							$insertQuery = "INSERT INTO product(pid, pname, total, available, cid, price) VALUES ($id,'$eqName',$eqQuan,$eqQuan,1,$eqPrice) ";
-	 							echo $insertQuery;
+	 							//$id = $id+1;
+	 							//echo "insertion to be done";
+	 							$cid = $_SESSION['cid'];
+	 							$insertQuery = "INSERT INTO product(pname, total, available, cid, price) VALUES ('$eqName',$eqQuan,$eqQuan,$cid,$eqPrice) ";
+	 							//echo $insertQuery;
 	 							$iQuery = mysqli_query($con,$insertQuery) or die("query failed");
-	 							header("Location:total_display.php");
+	 							//header("Location:total_display.php");
 	 						}
 
 
@@ -194,7 +207,7 @@
       </div>
       <div class="modal-body">
 
-        <form method="POST" action="total_display.php">
+        <form method="POST" action="">
           <div class="form-group">
             <label for="exampleInputEmail1">Equipment Name</label>
             <input type="text" class="form-control" name="equipmentName" id="categoryName" aria-describedby="emailHelp" placeholder="Enter Category Name">
