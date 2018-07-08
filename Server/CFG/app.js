@@ -7,8 +7,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-//host: "13.229.237.24",
-host: "localhost",
+host: "13.229.237.24",
+//host: "localhost",
   user: "root",
   password: "root1234",
 database: "ISAP"
