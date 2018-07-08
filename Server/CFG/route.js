@@ -15,8 +15,8 @@ const client = require('twilio')(accountSid, authToken);
 
 
 var con = mysql.createConnection({
-host: "13.229.237.24",
-//host: "localhost",
+//host: "13.229.237.24",
+host: "localhost",
   user: "root",
   password: "root1234",
 database: "ISAP"
