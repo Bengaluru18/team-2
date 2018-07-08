@@ -7,13 +7,6 @@ var nodemailer = require('nodemailer');
 
 var mysql = require('mysql');
 
-/*
-const accountSid = 'AC683dcb728d1c27780ca9cff532730ea3';
-const authToken = '413053016fd2448ad74eb1a3dd383a56';
-const client = require('twilio')(accountSid, authToken);
-*/
-
-
 var con = mysql.createConnection({
 //host: "13.229.237.24",
 host: "localhost",
@@ -46,7 +39,7 @@ client.messages
          body: 'Lets grabch at Milliways tomorrow!',
          from: '+18325398167',
          //mediaUrl: 'http://www.example.com/cheeseburger.png',
-         to: '+917022495226'
+         to: '+912222495226'
        })
       .then(message => console.log(message.sid + " "))
       .done();
