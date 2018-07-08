@@ -16,7 +16,7 @@ database: "ISAP"
 
 
 con.connect(function(err) {
-  if (err) throw err;
+//  if (err) throw err;
   console.log("Connected!");
 
 app.use(express.static('public'));
@@ -32,7 +32,7 @@ app.get('/getequip/:cid', function (req, res) {
 //var cid = 11; //req.query.cid;
 console.log("jsn");
 con.query("SELECT * FROM product where cid =" + req.params.cid, function (err, result, fields) {
-    if (err) throw err;
+  //  if (err) throw err;
     console.log(result);
   res.send(result);
   });
@@ -42,7 +42,7 @@ con.query("SELECT * FROM product where cid =" + req.params.cid, function (err, r
 
 app.get('/farmer/:fid', function (req, res) {
 con.query("SELECT * FROM Farmer where fid=" +req.params.fid, function (err, result, fields) {
-    if (err) throw err;
+  //  if (err) throw err;
     console.log(result);
   res.send(result);
   });
@@ -51,7 +51,7 @@ con.query("SELECT * FROM Farmer where fid=" +req.params.fid, function (err, resu
 
 app.get('/booking/:fid', function (req, res) {
 con.query("SELECT * FROM booking where fid=" +req.params.fid, function (err, result, fields) {
-    if (err) throw err;
+    //if (err) throw err;
     console.log(result);
   res.send(result);
   });
@@ -63,7 +63,7 @@ app.post('/inserting_booking/:pid/:pname/:qty/:bdate/:rdate/:fid',function(req,r
   var total;
 console.log("insert into booking (pid,pname,quantity,borrowdate,returndate,fid)values('"+req.params.pid+"','"+req.params.pname+"','"+req.params.qty+"','"+req.params.bdate+"','"+req.params.rdate+"','"+req.params.fid+"')")
 con.query("insert into booking (pid,pname,quantity,borrowdate,returndate,fid)values('"+req.params.pid+"','"+req.params.pname+"','"+req.params.qty+"','"+req.params.bdate+"','"+req.params.rdate+"','"+req.params.fid+"')",function (err, result, fields) {
-if (err) throw err;
+//if (err) throw err;
     console.log(result);
   res.send(result);
   });
